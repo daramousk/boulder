@@ -19,6 +19,7 @@ import (
 //    internal error.
 //  - Prefixes the Type field of the ProblemDetails with a namespace.
 //  - Sends an HTTP response containing the error and an error code to the user.
+//TODO this sends the error, perhaps attach retry here?
 func SendError(
 	log blog.Logger,
 	namespace string,
@@ -58,6 +59,7 @@ func SendError(
 
 	// Write the JSON problem response
 	response.Header().Set("Content-Type", "application/problem+json")
+    // TODO if the error is of type RateLimitError then send a Retry-After
 	response.WriteHeader(code)
 	response.Write(problemDoc)
 }

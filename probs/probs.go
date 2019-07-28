@@ -37,6 +37,7 @@ type ProblemType string
 
 // ProblemDetails objects represent problem documents
 // https://tools.ietf.org/html/draft-ietf-appsawg-http-problem-00
+// TODO the RateLimitedProblem should point to the limit document
 type ProblemDetails struct {
 	Type   ProblemType `json:"type,omitempty"`
 	Detail string      `json:"detail,omitempty"`

@@ -1389,7 +1389,7 @@ func (ra *RegistrationAuthorityImpl) checkCertificatesPerNameLimit(ctx context.C
 		domains := strings.Join(namesOutOfLimit, ", ")
 		ra.certsForDomainStats.Inc("Exceeded", 1)
 		ra.log.Infof("Rate limit exceeded, CertificatesForDomain, regID: %d, domains: %s", regID, domains)
-		return berrors.RateLimitError(
+		return berrors.RateLimitError( //TODO here return retry-after?
 			"too many certificates already issued for: %s",
 			domains,
 		)

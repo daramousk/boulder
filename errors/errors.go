@@ -88,7 +88,7 @@ func NotFoundError(msg string, args ...interface{}) error {
 }
 
 func RateLimitError(msg string, args ...interface{}) error {
-	return &BoulderError{
+	return &BoulderError{ // TODO return retry-after
 		Type:   RateLimit,
 		Detail: fmt.Sprintf(msg+": see https://letsencrypt.org/docs/rate-limits/", args...),
 	}
